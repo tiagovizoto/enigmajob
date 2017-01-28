@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/v/css/foundation.min.css">
+    <link rel="stylesheet" href="/static/v/css/app.css">
+  <meta name="description" content="Publique sua vaga na EnigmaJobs. Enigma Jobs é um site de empregos para profissonais a Tecnologia da Informação e Exatas. Que tem o objetivo de ser simples e eficiente" />
+    <meta name="keywords" content="job, careers, work, free, IT, development, programmer" />
+    <style media="screen">
+      h1, label{
+        color: white;
+      }
+      body{
+        background-color: black
+      }
+    </style>
+    <title>Token Generation</title>
+  </head>
+  <body ><br><br><br>
+<div class="large-5 large-centered columns">
+    <div class="row">
+        <a href="/"><img style="display: block; margin: 0 auto;" src="/static/img/path3056.png"></a>
+    </div>
+    <br>
+    <h1 align="center">Novo TOKEN</h1>
+    <form action="/sendmanager" method="post">
+        <label for="">Informe seu email</label>
+        <input type="email" name="email" >
+        <button type="submit"  class="button expanded" ><b>Enviar Token</b></button>
+    </form>
+
+    <br>
+    <h1 align="center">Acesso Manager</h1>
+    <form id="manager_form" onsubmit="managerToken()">
+      <label for="">Token</label>
+      <input type="text" name="token" value="">
+      <button type="submit"  class="button expanded" name="button"><b>Login</b></button>
+    </form>
+  </div>
+  <script>
+      function managerToken(){
+    var action_src = "/manager/" + document.getElementsByName("token")[0].value;
+    var manager_form = document.getElementById('manager_form');
+    manager_form.action = action_src ;
+    }
+  </script>
+    <script src="/static/v/js/vendor/jquery.js"></script>
+    <script src="/static/v/js/vendor/what-input.js"></script>
+    <script src="/static/v/js/vendor/foundation.js"></script>
+    <script src="/static/v/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<head>
+    <script src="/static/js/vue.js"></script>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Job</title>
+</head>
+<body>
+%include('base_header.html')
+    <div class="col-md-6 col-md-offset-3">
+        <h1>New Job</h1>
+    </div>
+    <div  id="app" class="container">
+         <validator name="validation1">
+    <div class="col-md-6 col-md-offset-3">
+        <form action="/add" method="post" id="new_job">
+            <div class="row"></div>
+            <div class="form-group">
+                <label for="title">Title Job</label>
+                <input type="text" id="title" class="form-control" size=30 name="title" placeholder="Title Job" required>
+            </div>
+             <div class="form-group">
+                 <label for="country">Location</label>
+                <input type="text" class="form-control" id="country" name="location" size=30 placeholder="City">
+             </div>
+            <div class="form-group">
+                <label for="business">Business Name</label>
+                <input type="text" id="business" name="business" size=30 class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="number">Phone Cell</label>
+                <input type="text" name="cell" size=30 class="form-control" required>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-8 col-sm-6">
+                <label>Salary (Optional)</label>
+                <input type="text" placeholder="00000"  class="form-control" maxlength="9" onkeypress="formatar('######,##', this)" name="salary" >
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                <label>Coin</label>
+                <select name="coin" class="form-control">
+                      <option>USD</option>
+                      <option>EUR</option>
+                      <option>BRL</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                <label>Period Pay</label>
+                <select name="period_pay" class="form-control ">
+                      <option>Year</option>
+                      <option>Month</option>
+                      <option>Week</option>
+                      <option>Day</option>
+                      <option>Hour</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" name="description" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" class="form-control" name="email" size=30 required>
+            </div>
+
+                <label for="date_valid">Date Validad</label>
+
+               <input name="date_valid" id="date_valid"  class="form-control" type="date" required>
+
+             &#013; &#013;
+                &#013;
+            <br>
+            <div class="">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" class="btn btn-danger">Clean</button>
+            </div>
+
+
+        </form>
+    </div>
+             </validator>
+        </div>
+   <br>
+%include('base_foot.html')
+</body>
+
+<script>
+             $(function(){
+                    $("#new_job").validate({
+                        rules : {
+                             name:{
+                                    required:true,
+                                    minlength:3
+                             },
+                             email:{
+                                    required:true
+                             },
+                             description:{
+                                    required:true,
+                                    minlength:20
+                             },
+                            date_valid: {
+                                australianDate : true,
+                                required:true
+                            }
+
+                       },
+                       messages:{
+                             title:{
+                                    required:"Please, What is Title of job?",
+                                    minlength:"Minime 3 caracteres"
+                             },
+                             email:{
+                                    required:"E-mail is required"
+                             },
+                             description:{
+                                    required:"The Description is required",
+                                    minlength:"Minime 20 caracter"
+                             },
+                             date_valid:{
+                                 australianDate:"Please enter a date in the format dd/mm/yyyy.",
+                                 required:"Date is not opcional"
+                             }
+                       }
+                    });
+             });
+             $.validator.addMethod(
+                "australianDate",
+                function(value, element) {
+                    // put your own logic here, this is just a (crappy) example
+                    console.log(value, element)
+                    return value.match(/^\d{4}\-\d{2}-\d{2}$/);
+                },
+                "Please enter a date in the format dd/mm/yyyy."
+            );
+            function formatar(mascara, documento){
+              var i = documento.value.length;
+              var saida = mascara.substring(0,1);
+              var texto = mascara.substring(i)
+
+              if (texto.substring(0,1) != saida){
+                        documento.value += texto.substring(0,1);
+              }
+
+            }
+       </script>
+        <style>
+       .error{
+             color:red
+       }
+        </style>
+</html>

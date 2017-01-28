@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Form</title>
+    <script src="vue.js" charset="utf-8"></script>
+    <script src="js/axios.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+    <div class="" id='curriculum'>
+
+        <ul v-for="(i,index) in experiencia">
+          <li>{{i}}<button type="button" v-on:click="removeXP(index)" name="button">Delete</button></li>
+        </ul>
+      <label>Nome</label>
+      <input type="text" v-model="newNome"><br>
+      <label>Email</label>
+      <input type="text" v-model="newemail"><br>
+      <label>Celular</label>
+      <input type="text" v-model="newcelular"><br>
+      <label>Cidade/Estado</label>
+      <input type="text" v-model="newlocalicao"><br>
+      <label>Data de Nascimento</label>
+      <input type="text" v-model="newdata_nascimento"><br>
+      <label>Resumo</label>
+      <textarea  v-model="newresumo"></textarea><br>
+      <ul v-for="(edu, index) in educacao">
+        {{index}}<li>{{edu}}</li> <button type="button" v-on:click="removeEdu(index)" name="button">Delete</button>
+      </li>
+      </ul>
+      <h2>Educação</h2>
+      <label for="">Institruição de Ensino</label>
+      <input type="text" v-model="nomeEnsino" name="" value=""><br>
+      <label for="">Curso</label>
+      <input type="text" v-model="newNomeCurso" name="" value=""><br>
+      <label for="">Inicio</label>
+      <input type="date" v-model="newDataInicio" name="" value=""><br>
+      <label for="">Termino</label>
+      <input type="date" v-model="newDataTermino" name="" value=""><br>
+      <button type="button" v-on:click="adicionaEducacao" name="button">Add Edu</button>
+      <br>
+      <br>
+      <h2>Experiência</h2>
+      <label>Empresa</label>
+      <input type="text" v-model="newNomeEmpresa" value=""><br>
+      <label>Cargo</label>
+      <input type="text" v-model="newCargo" value=""><br>
+      <label>Inicio</label>
+      <input type="date" v-model="newDataInicioXP" value=""><br>
+      <label>Termino</label>
+      <input type="date" v-model="newDataTerminoXP" value=""><br>
+      <label>Descrição</label>
+      <textarea v-model="newDescricacao" value=""></textarea><br>
+      <button type="button" v-on:click="adicionarXP" name="button">Add XP</button>
+      <br>
+      <button type="button" v-on:click="adicionaCurriculum" name="button">Add Curriculo</button>
+    </div>
+  </body>
+<script type="text/javascript">
+  var app = new Vue({
+    el : '#curriculum',
+    data:{
+      newNome:'',
+      newemail:'',
+      newcelular:'',
+      newlocalicao:'',
+      newdata_nascimento:'',
+      newtecnologia:'',
+      newresumo:'',
+
+      newNomeEmpresa:'',
+      newCargo:'',
+      newDescricacao:'',
+      newDataInicioXP:'',
+      newDataTerminoXP:'',
+
+      nomeEnsino:'',
+      newNomeCurso:'',
+      newDataInicio:'',
+      newDataTermino:'',
+      experiencia:[],
+      educacao:[],
+      curriculum:[]
+    },
+    methods:{
+      adicionaCurriculum: function(){
+        this.curriculum.push({nome:'',
+        email:this.newNome,
+        celular:this.newcelular,
+        localicao:this.newlocalicao,
+        data_nascimento:this.newdata_nascimento,
+        tecnologia:this.newtecnologia,
+        resumo:this.newresumo
+        })
+        this.newNome = ''
+        this.newcelular = ''
+        this.newlocalicao = ''
+        this.newdata_nascimento = ''
+        this.newtecnologia = ''
+        this.newresumo = ''
+      },
+      adicionaEducacao: function(){
+        this.educacao.push({nome:this.nomeEnsino,curso:this.newNomeCurso,inicio:this.newDataInicio,termino:this.newDataTermino})
+      },
+      adicionarXP: function(){
+        this.experiencia.push({empresa:this.newNomeEmpresa ,cargo:this.newCargo , inicio_xp:this.newDataInicioXP , termino_xp:this.newDataTerminoXP ,descricao:this.newDescricacao  })
+      },
+      removeEdu: function(index) {
+        this.educacao.splice(index,1)
+      },
+      removeXP: function(index){
+        this.experiencia.splice(index, 1)
+      }
+    }
+  })
+</script>
+</html>

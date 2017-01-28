@@ -1,0 +1,79 @@
+
+
+
+<div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+  <div class="title-bar-left">
+    <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+    <span class="title-bar-title">EnigmJob</span>
+  </div>
+</div>
+
+<script type="text/javascript">
+    window.smartlook||(function(d) {
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='//rec.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', '029fdff60bed3c48aa26a6cf9e11010a14397803');
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-88706038-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+<!-- off-canvas left menu -->
+<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+  <ul class="vertical dropdown menu" data-dropdown-menu>
+     %import bottle
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">Sobre</a></li>
+    <li><a href="/contact">Contato</a></li>
+    <li><a href="/new">Nova vaga</a></li>
+    <li><a href="/manager">Manager Jobs</a></li>
+    %if bottle.request.get_cookie('token'):
+    <li><a href="/logout">Sair</a></li>
+    %end
+  </ul>
+</div>
+
+<!-- "wider" top-bar menu for 'medium' and up -->
+<div id="widemenu" class="top-bar">
+
+  <div class="top-bar-left">
+    &#013;
+    <ul class="dropdown menu" style="font-weight:bold"  data-dropdown-menu>
+      <li class="menu-text" style="color:white">EnigmaJob</li>
+      <li class="has-submenu">
+        <a href="/">Home</a>
+      </li>
+      <li class="has-submenu">
+        <a href="/about">Sobre</a>
+      </li>
+      <li class="has-submenu">
+        <a href="/contact">Contato</a>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+      <a class="warning hollow button" href="/manager">Manager Jobs</a>&nbsp;
+      <a class="hollow button" href="/new">Nova Vaga</a>
+
+      %if bottle.request.get_cookie('token'):
+      <a class=" alert button" href="/logout">Sair</a>
+      %end
+  </div>
+   <script src="/static/v/js/vendor/jquery.js"></script>
+    <script src="/static/v/js/vendor/what-input.js"></script>
+    <script src="/static/v/js/vendor/foundation.min.js"></script>
+    <script src="/static/v/js/app.js"></script>
+
+</div>
